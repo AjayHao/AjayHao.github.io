@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>J2EE代码结构推荐 | Ajay&#39;s Blog</title>
+  <meta name="keywords" content=" J2EE ">
+  <meta name="description" content="J2EE代码结构推荐 | Ajay&#39;s Blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="IT科班出身，金融行业码农，由于工作之后技能点乱点，因而无稳定技术流派，已义无反顾投身开源世界 Java爱好者，近期又迷上了Python， 内心深处拒绝“成为码农”却又常常研究代码到深夜 讨厌无趣的人，更害怕自己变成一个那样的人。。 万幸已脱单。。难为妹子了orz So..Don’t Have to Try So Hard..Just relax , and share , and have FU">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于">
+<meta property="og:url" content="https://ajayhao.gitee.io/about/index.html">
+<meta property="og:site_name" content="Ajay&#39;s Blog">
+<meta property="og:description" content="IT科班出身，金融行业码农，由于工作之后技能点乱点，因而无稳定技术流派，已义无反顾投身开源世界 Java爱好者，近期又迷上了Python， 内心深处拒绝“成为码农”却又常常研究代码到深夜 讨厌无趣的人，更害怕自己变成一个那样的人。。 万幸已脱单。。难为妹子了orz So..Don’t Have to Try So Hard..Just relax , and share , and have FU">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-01-22T14:00:00.000Z">
+<meta property="article:modified_time" content="2016-01-22T14:00:00.000Z">
+<meta property="article:author" content="Hao Zhenjie">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/images/favicon.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/images/avatar.png"/>
+</a>
+<div class="author">
+    <span>Hao Zhenjie</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+            <a title="github"
+               href="https://github.com/ajayhao/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:ajay.hao@gmail.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(28)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="技术">
+                        
+                        技术
+                        <small>(20)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="金融业务">
+                        
+                        金融业务
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="生活">
+                        
+                        生活
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="28">
+<input type="hidden" id="yelog_site_word_count" value="72.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://blog.didispace.com/">程序猿DD</a></li>
+            
+            <li><a target="_blank" href="http://www.ruanyifeng.com/blog/">阮大神(阮一峰)</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>大数据</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>会计核算</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>基金业务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>金融</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>可视化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>其他</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>杂谈</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>django</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>echarts</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>elastic</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>https</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>J2EE</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Mybatis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TA</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 技术 "
+           href="/2023/11/26/elk-install/"
+           data-tag="java,elastic"
+           data-author="" >
+            <span class="post-title" title="ELK环境搭建">ELK环境搭建</span>
+            <span class="post-date" title="2023-11-26 15:57:47">2023/11/26</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2023/01/16/https-certs/"
+           data-tag="https"
+           data-author="" >
+            <span class="post-title" title="Https证书生成及转换">Https证书生成及转换</span>
+            <span class="post-date" title="2023-01-16 15:57:47">2023/01/16</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2022/05/21/pyscipopt-install/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="CentOS下 SCIP优化器及PySCIpypt客户端安装">CentOS下 SCIP优化器及PySCIpypt客户端安装</span>
+            <span class="post-date" title="2022-05-21 20:57:47">2022/05/21</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2021/03/18/may-luck-and-tenderness-be-with-you/"
+           data-tag="杂谈"
+           data-author="" >
+            <span class="post-title" title="留一半相思上大道">留一半相思上大道</span>
+            <span class="post-date" title="2021-03-18 00:00:46">2021/03/18</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/03/10/confluence-trial/"
+           data-tag="其他"
+           data-author="" >
+            <span class="post-title" title="Confluence安装踩坑实录(Docker安装)">Confluence安装踩坑实录(Docker安装)</span>
+            <span class="post-date" title="2021-03-10 17:00:00">2021/03/10</span>
+        </a>
+        
+        <a  class="全部文章 金融业务 "
+           href="/2021/02/13/financial-lease/"
+           data-tag="金融"
+           data-author="" >
+            <span class="post-title" title="浅谈融资租赁的几种业务模式">浅谈融资租赁的几种业务模式</span>
+            <span class="post-date" title="2021-02-13 21:18:00">2021/02/13</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/08/29/bear-zen-talk/"
+           data-tag="工具"
+           data-author="" >
+            <span class="post-title" title="与熊论个道">与熊论个道</span>
+            <span class="post-date" title="2020-08-29 21:51:00">2020/08/29</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/05/21/springboot-logging-config/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="SpringBoot Logging配置">SpringBoot Logging配置</span>
+            <span class="post-date" title="2020-05-21 11:57:47">2020/05/21</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/03/31/java8-optional/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Java 8 进阶系列 - 初识Optional类">Java 8 进阶系列 - 初识Optional类</span>
+            <span class="post-date" title="2020-03-31 11:05:47">2020/03/31</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/03/29/collection-of-bigdata-tools/"
+           data-tag="大数据,可视化"
+           data-author="" >
+            <span class="post-title" title="全球公开大数据平台资料集锦">全球公开大数据平台资料集锦</span>
+            <span class="post-date" title="2020-03-29 14:38:36">2020/03/29</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/03/22/pyinstaller-reduce-file-size/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="Python打包exe文件压缩">Python打包exe文件压缩</span>
+            <span class="post-date" title="2020-03-22 12:04:00">2020/03/22</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/03/14/java8-stream-api/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Java 8 进阶系列 - Stream API">Java 8 进阶系列 - Stream API</span>
+            <span class="post-date" title="2020-03-14 16:15:47">2020/03/14</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/03/07/java8-lets-use-lambda/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Java 8 进阶系列 - Lambda 表达式">Java 8 进阶系列 - Lambda 表达式</span>
+            <span class="post-date" title="2020-03-07 22:15:47">2020/03/07</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/02/29/java8-new-datetime-lib/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Java 8 进阶系列 - 新日期/时间库">Java 8 进阶系列 - 新日期/时间库</span>
+            <span class="post-date" title="2020-02-29 14:17:03">2020/02/29</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2020/02/06/echarts-demo/"
+           data-tag="可视化,echarts"
+           data-author="" >
+            <span class="post-title" title="数据分析可视化工具之 - Echarts">数据分析可视化工具之 - Echarts</span>
+            <span class="post-date" title="2020-02-06 22:14:00">2020/02/06</span>
+        </a>
+        
+        <a  class="全部文章 金融业务 "
+           href="/2020/01/28/index-encyclopedia/"
+           data-tag="金融"
+           data-author="" >
+            <span class="post-title" title="中国金融体系指标大全">中国金融体系指标大全</span>
+            <span class="post-date" title="2020-01-28 23:09:00">2020/01/28</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2019/10/22/py3-django-env-setup/"
+           data-tag="python,django"
+           data-author="" >
+            <span class="post-title" title="Python3及Django2.6环境搭建">Python3及Django2.6环境搭建</span>
+            <span class="post-date" title="2019-10-22 22:07:00">2019/10/22</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2017/07/13/mybatis-jdbcType-javaType/"
+           data-tag="Java,Mybatis"
+           data-author="" >
+            <span class="post-title" title="Mybatis-JDBCType与javaType映射关系">Mybatis-JDBCType与javaType映射关系</span>
+            <span class="post-date" title="2017-07-13 18:31:00">2017/07/13</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2016/11/30/multithread-volatile/"
+           data-tag="多线程"
+           data-author="" >
+            <span class="post-title" title="Java多线程系列(一)-正确使用 Volatile 变量">Java多线程系列(一)-正确使用 Volatile 变量</span>
+            <span class="post-date" title="2016-11-30 17:09:02">2016/11/30</span>
+        </a>
+        
+        <a  class="全部文章 金融业务 "
+           href="/2016/07/03/ta-bizcode/"
+           data-tag="TA,基金业务"
+           data-author="" >
+            <span class="post-title" title="TA数据交换信息速查">TA数据交换信息速查</span>
+            <span class="post-date" title="2016-07-03 09:31:00">2016/07/03</span>
+        </a>
+        
+        <a  class="全部文章 金融业务 "
+           href="/2016/06/22/accounting-framework/"
+           data-tag="会计核算"
+           data-author="" >
+            <span class="post-title" title="会计核算框架">会计核算框架</span>
+            <span class="post-date" title="2016-06-22 22:31:00">2016/06/22</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2016/05/29/suitable-struct/"
+           data-tag="J2EE"
+           data-author="" >
+            <span class="post-title" title="J2EE代码结构推荐">J2EE代码结构推荐</span>
+            <span class="post-date" title="2016-05-29 12:09:00">2016/05/29</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2016/04/26/git-sshkey/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="应对多套git环境的ssh-key管理方案">应对多套git环境的ssh-key管理方案</span>
+            <span class="post-date" title="2016-04-26 19:09:00">2016/04/26</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2016/04/24/reasons-for-quit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ICBC，再见！">ICBC，再见！</span>
+            <span class="post-date" title="2016-04-24 00:10:00">2016/04/24</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2016/04/12/maven-project/"
+           data-tag="maven"
+           data-author="" >
+            <span class="post-title" title="典型Maven化的Web工程">典型Maven化的Web工程</span>
+            <span class="post-date" title="2016-04-12 21:30:00">2016/04/12</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2016/03/31/git-management/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="git常用操作示例">git常用操作示例</span>
+            <span class="post-date" title="2016-03-31 20:30:00">2016/03/31</span>
+        </a>
+        
+        <a  class="全部文章 技术 "
+           href="/2016/02/03/markdown-ref/"
+           data-tag="markdown"
+           data-author="" >
+            <span class="post-title" title="Markdown语法速查表">Markdown语法速查表</span>
+            <span class="post-date" title="2016-02-03 21:00:00">2016/02/03</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2016/01/18/virgin-post/"
+           data-tag="杂谈"
+           data-author="" >
+            <span class="post-title" title="启航">启航</span>
+            <span class="post-date" title="2016-01-18 21:30:00">2016/01/18</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first">&lt;</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-suitable-struct" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">J2EE代码结构推荐</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="技术">技术</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">J2EE</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2016-05-29 12:09:00'>2016-05-29 12:09</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:944</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#优化1：单一服务层-gt-服务依赖隔离"><span class="toc-text">优化1：单一服务层-&gt;服务依赖隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优化2：单一模型层-gt-DO-DTO"><span class="toc-text">优化2：单一模型层-&gt;DO + DTO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优化3-把业务模块做成maven子模块"><span class="toc-text">优化3: 把业务模块做成maven子模块</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>J2EE项目一般都有比较类似的目录层次，有了maven后，项目的大框架已经有了一种默认规约，而一个清晰良好的目录结构，能够为后续项目的“健康发展”提供很重要的支持。在一个结构良好的代码框架下，既能快速定位资源，便于日常维护，提升开发效率，又能使新的开发成员快速熟悉模块关联，便于开发团队新老交替，技术传承。</p>
+<a id="more"></a>
+
+<p>传统SSH类项目的分层结构已经老生常谈，主要是Action-Service-DAO，可以参考<a href="http://my.csdn.net/yuanhenglizhen110" target="_blank" rel="noopener">吴毅</a>先生的博文</p>
+<p><a href="http://blog.csdn.net/yuanhenglizhen110/article/details/9744669" target="_blank" rel="noopener">JAVA中Action层, Service层 ，modle层 和 Dao层的功能区分</a></p>
+<p><img src="https://s2.ax1x.com/2020/01/04/lwRGY6.png" alt="简单的分层"></p>
+<p>下图是典型的基于maven的SpringMVC+Mybatis的项目结构</p>
+<p><img src="https://s2.ax1x.com/2020/01/04/lwRlwR.png" alt=""></p>
+<p>从图中看已经做了比较好的分层，controller负责与前端交互，service负责模块业务逻辑，dao负责数据访问，mapper层为对象模型。</p>
+<p>实践下来，一般规模的项目基于这个分层模型，应该已经足够，但是如果项目足够大，这样的划分就显得“不够友好”了。随着系统逐步庞大，模块间的业务逻辑调用势必藤蔓相连，会显得越来越“重”。我们尝试做下优化:</p>
+<p><img src="https://s2.ax1x.com/2020/01/04/lwR1T1.png" alt=""></p>
+<h4 id="优化1：单一服务层-gt-服务依赖隔离"><a href="#优化1：单一服务层-gt-服务依赖隔离" class="headerlink" title="优化1：单一服务层-&gt;服务依赖隔离"></a>优化1：单一服务层-&gt;服务依赖隔离</h4><p>红框中的服务层，很可能出现负载过重的情况。因为服务接口作为对外的调用约定，具体业务逻辑均体现在ServiceImpl中，实际上就包括了两部分内容：</p>
+<pre><code>1. 组装业务模块DAO的返回POJO数据，并完成相应处理，实现自身业务模块的逻辑（“自身”指对于无需依赖外部接口的场景）
+2. 整合调用外部服务接口（需要与外部系统/外部模块交互）</code></pre><p>这样的话，service层就会变得比较臃肿，比较好的做法是把1与2拆分开。在service中抽出facade层与intergration层。facade层作为留给外部模块调用的接口层，而intergration层作为一个访问其他服务的代理，继而将模块的内部逻辑与外部服务依赖加一层隔离。</p>
+<p><img src="https://s2.ax1x.com/2020/01/04/lwR8Fx.png" alt=""></p>
+<p>如图所示，integration中的代理类负责内外交互，facade的实现类可以访问唯一的访问代理，而不用直接访问外部服务，IUserClientProxy起到了良好的“内外层服务隔离”效果。</p>
+<h4 id="优化2：单一模型层-gt-DO-DTO"><a href="#优化2：单一模型层-gt-DO-DTO" class="headerlink" title="优化2：单一模型层-&gt;DO + DTO"></a>优化2：单一模型层-&gt;DO + DTO</h4><p><img src="https://s2.ax1x.com/2020/01/04/lwRJfK.png" alt=""></p>
+<p>如图所示，dao层返回的POJO, 若直接穿透到controller层与viewer交互，无疑会出现实体对象的跨层耦合，这样便无法做到后台的改动对于前台透明。 为避免这样的情况发生，可以考虑在facade层增加DTO层，在DO数据需要被“跨层访问”时，进行适当的转换。</p>
+<p><img src="https://s2.ax1x.com/2020/01/04/lwRNlD.png" alt=""></p>
+<h4 id="优化3-把业务模块做成maven子模块"><a href="#优化3-把业务模块做成maven子模块" class="headerlink" title="优化3: 把业务模块做成maven子模块"></a>优化3: 把业务模块做成maven子模块</h4><p><img src="https://s2.ax1x.com/2020/01/04/lwRaOH.png" alt=""></p>
+<p>核心思想是把业务层的逻辑，能按照业务模块维度单独打包成jar包，便于更灵活的版本发布、弹性扩容以及缺陷管理。<br>web的打包形式为war，业务层的maven module一律打包成jar，带上版本号，标识成web的依赖。后续可以针对单独的业务模块jar包进行管理。</p>
+<p>这样调整后，可以作为较为理想的j2ee分层目录结构分层参考。 在我们团队中，电商项目及运营后台均沿用这样一种分层结构风格，或许对于一些小型项目，也不用划分的那么细。 可从长远的可扩展角度看，这种目录组织方式在模块解耦合上效果很好，使整个项目“能屈能伸”。</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>J2EE代码结构推荐</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">944</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="Hao Zhenjie">Hao Zhenjie</a></p>
+    <p><span class="copy-title">发布时间:</span>2016-05-29, 12:09:00</p>
+    <p><span class="copy-title">最后更新:</span>2016-05-29, 12:09:00</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2016/05/29/suitable-struct/" title="J2EE代码结构推荐">https://ajayhao.gitee.io/2016/05/29/suitable-struct/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 Hao Zhenjie
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://s2.ax1x.com/2020/01/04/lwsieP.jpg");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=27946527&auto=1&height=66"></iframe>
+</div>
+<!-- 以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码 -->
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on ('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind ("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css ('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css ('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset ().left;
+      var div_y = e.pageY - $moveTarget.offset ().top;
+      $DOC.on ('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth () >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth () : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight () >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight () : targetY;
+        $moveTarget.css ({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on ('mouseup', function () {
+        $DOC.unbind ("selectstart");
+        $DOC.off ('mousemove')
+        $DOC.off ('mouseup')
+        $moveTarget.css ('border', 'none')
+        $('#musicDragArea').css ('height', '10px');
+      })
+    })
+</script>
+</html>
