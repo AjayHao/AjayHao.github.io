@@ -618,7 +618,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:721</span>
+        <span>字数:739</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -734,7 +734,12 @@ output.logstash:
 --name filebeat --net elbk-net \
 docker.elastic.co/beats/filebeat:7.16.3</code></pre><p>  <strong>此处尤其需要注意filebeat.yml后的:ro，表示该文件挂载到镜像内，必须去除写权限</strong></p>
 <p>  该文件如果带有写权限，则会出现以下报错：</p>
-<pre><code>Exiting: error loading config file: config file (&quot;filebeat.yml&quot;) can only be writable by the owner but the permissions are &quot;-rwxrwxrwx&quot; (to fix the permissions use: &#39;chmod go-w /usr/share/filebeat/filebeat.yml&#39;)</code></pre>
+<pre><code>Exiting: error loading config file: config file (&quot;filebeat.yml&quot;) can only be writable by the owner but the permissions are &quot;-rwxrwxrwx&quot; (to fix the permissions use: &#39;chmod go-w /usr/share/filebeat/filebeat.yml&#39;)</code></pre><ol start="5">
+<li><p>Nginx日志采集与监控</p>
+<p><a href="https://www.anquanclub.cn/7950.html" target="_blank" rel="noopener">Filebeat 采集 Nginx 日志的方法_nginx</a></p>
+</li>
+</ol>
+
       
        
     </div>
